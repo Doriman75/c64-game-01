@@ -34,21 +34,61 @@ unsigned feet()
 	return result;
 }
 
+unsigned head()
+{
+	unsigned address = SCR_SCREEN_MEMORY;
+	char result,i;
+	address += x>>3;
+	address += 40*((y-2)>>3);
+	address += 0;
+	result = PEEK(address);
+	for(i=1; i <=2;i++)
+		if(PEEK(address+i)>result) result = PEEK(address+i);
+	return result;
+}
+
+unsigned right()
+{
+	unsigned address = SCR_SCREEN_MEMORY;
+	char result,i;
+	address += x>>3;
+	address += 40*((3+y)>>3);
+	address += 2;
+	result = PEEK(address);
+	for(i=0;i<40*2;i+=40)
+		if(PEEK(address+i)>result) result = PEEK(address+i);
+	return result;
+}
+
+unsigned left()
+{
+	unsigned address = SCR_SCREEN_MEMORY;
+	char result,i;
+	address += x>>3;
+	address += 40*((3+y)>>3);
+	address += 0;
+	result = PEEK(address);
+	for(i=0;i<40*2;i+=40)
+		if(PEEK(address+i)>result) result = PEEK(address+i);
+	return result;
+}
+
 char f()
 {
-	unsigned char f1=1,f2=1,k;
-	k = mirror+(0<<1)+(move<<2);
+	unsigned char f1=1,f2=1,k,f;
+	f=feet()==32?0:1;
+	k = mirror+(f<<1)+(move<<2);
 	//asm ("jsr $E566"); printf("k: %3d",k);
 	switch(k)
 	{
-		case 2: f1=8; f2=8; break;
-		case 3: f1=11; f2=11; break;
-		case 6: f1=8; f2=11; break;
-		case 7: f1=11; f2=8; break;
+		case 2: f1=1; f2=1; break;
+		case 3: f1=6; f2=6; break;
+		case 6: f1=2; f2=3; break;
+		case 7: f1=4; f2=5; break;
 		case 0: f1=f2=1; break;
-		case 4: f1=2; f2=3; break;
-		case 5: f1=4; f2=5; break;
-		case 1: f1=f2=12; break;
+		case 4: f1=7; f2=8; break;
+		case 5: f1=9; f2=10; break;
+		case 1: f1=f2=6; break;
 	}
 
 	return (frame % SPEED < SPEED/2?f1:f2)-1;
@@ -56,8 +96,8 @@ char f()
 
 void main(void) {
 	char joy;
-	x = 0;
-	y = 0;
+	x = 48;
+	y = 32;
 
 	scr_clear();
 	
@@ -77,12 +117,13 @@ void main(void) {
 	while(1)
 	{
 		if(feet()==32) y++;
+		right();
 		move = 0;
 		joy = joystick();
-		if(!(joy & _JOY_DOWN)) { y++; move=1; }
-		if(!(joy & _JOY_RIGHT)) { x+=2; mirror = 0; move=1;};
-		if(!(joy & _JOY_UP)) { y-=2; move=1;}
-		if(!(joy & _JOY_LEFT)) { x-=2; mirror = 1; move=1;};
+		//if(!(joy & _JOY_DOWN)) { y++; move=1; }
+		if(!(joy & _JOY_RIGHT) && right()==32) { x+=2; mirror = 0; move=1;};
+		if(!(joy & _JOY_UP) && head()==32) { y-=2; move=1;}
+		if(!(joy & _JOY_LEFT) && left()==32) { x-=2; mirror = 1; move=1;};
 		
 		sprite_setX(0,x);
 		sprite_setY(0,y);
