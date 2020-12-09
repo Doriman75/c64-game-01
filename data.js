@@ -30,6 +30,10 @@ function compress(data)
 
 let data = fs.readFileSync(process.argv[2],"utf-8")
 				.trim()
+				.split(/\n/)
+				.filter(e=>!e.startsWith(";"))
+				.join(",")
+				.replace(/BYTE/gi, " ")
 				.replace(/,/g, " ")
 				.replace(/\t/g, " ")
 				.replace(/\n/g, " ")
@@ -40,6 +44,7 @@ let data = fs.readFileSync(process.argv[2],"utf-8")
 				.split(",")
 				.filter(e=>e.trim().length > 0)
 
+//console.log(data);
 //console.log("char ", process.argv[2].split("\\").pop().split(".")[0].trim() + "[] = {", compress(data).join(","), "};")
 console.log("char ", process.argv[2].split("\\").pop().split(".")[0].trim() + "[] = {", data.join(","), "};")
 
