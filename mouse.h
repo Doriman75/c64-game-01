@@ -1,0 +1,75 @@
+#define MOUSE_X 54297
+#define MOUSE_Y 54298
+#define MOUSE_BUTTONS 56321
+
+
+char MOUSE_ARROW[] = {
+0b10000000,0b00000000,0b00000000,
+0b11000000,0b00000000,0b00000000,
+0b11100000,0b00000000,0b00000000,
+0b11110000,0b00000000,0b00000000,
+0b11111000,0b00000000,0b00000000,
+0b11111100,0b00000000,0b00000000,
+0b11110000,0b00000000,0b00000000,
+0b10011000,0b00000000,0b00000000,
+0b00011000,0b00000000,0b00000000,
+0b00001000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+0b00000000,0b00000000,0b00000000,
+};
+
+unsigned _x;
+unsigned _y;
+char _lx;
+char _ly;
+
+void mouse_init()
+{
+	_x=160;
+	_y=100;
+}
+
+unsigned mouse_x()
+{
+	char cx = (PEEK(MOUSE_X) & 126)>>1;
+	if(cx > _lx && _x < 319) _x++;
+	if(cx < _lx && _x > 0) _x--;
+	_lx = cx;
+	return _x;
+}
+
+unsigned mouse_y()
+{
+	char cy = 64-(PEEK(MOUSE_Y) & 126)>>1;
+	if(cy > _ly && _y < 199) _y++;
+	if(cy < _ly && _y > 0) _y--;
+	_ly = cy;
+	return _y;
+}
+
+char mouse_left()
+{
+	char c = PEEK(MOUSE_BUTTONS);
+	return c == 239 || c == 238;
+}
+
+char mouse_right()
+{
+	char c = PEEK(MOUSE_BUTTONS);
+	return c == 254 || c == 238;
+}
+
+char mouse_both()
+{
+	char c = PEEK(MOUSE_BUTTONS);
+	return c == 238;
+}
