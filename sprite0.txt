@@ -1,24 +1,24 @@
 ; Sprite #1
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
+	BYTE   1,  84,   0
 	BYTE   5,  80,   0
-	BYTE  21,  64,   0
-	BYTE  23, 192,   0
-	BYTE  29, 208,   0
-	BYTE  29, 208,   0
-	BYTE  15, 240,   0
-	BYTE  15, 112,   0
-	BYTE   7, 240,   0
-	BYTE   9,  16,   0
-	BYTE 106, 164,   0
-	BYTE 170, 168,   0
-	BYTE  90, 152,   0
-	BYTE 250, 188,   0
-	BYTE 245, 112,   0
-	BYTE   5,  80,   0
-	BYTE  20,  20,   0
-	BYTE  20,  20,   0
-	BYTE  20,  20,   0
-	BYTE  84,  21,   0
+	BYTE   5, 240,   0
+	BYTE   7, 116,   0
+	BYTE   7, 116,   0
+	BYTE   3, 252,   0
+	BYTE   3, 220,   0
+	BYTE   1, 252,   0
+	BYTE   2,  68,   0
+	BYTE  26, 169,   0
+	BYTE  42, 170,   0
+	BYTE  22, 166,   0
+	BYTE  62, 175,   0
+	BYTE  61,  92,   0
+	BYTE   1,  84,   0
+	BYTE   5,   5,   0
+	BYTE   5,   5,   0
+	BYTE   5,   5,   0
+	BYTE  21,   5,  64
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
@@ -73,52 +73,28 @@
 ; Sprite #4
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
 	BYTE   0,   0,   0
+	BYTE   5,  80,   0
 	BYTE   1,  84,   0
-	BYTE   0,  85,   0
-	BYTE   0, 245,   0
-	BYTE   1, 221,   0
-	BYTE   1, 221,   0
-	BYTE   3, 252,   0
-	BYTE   3, 124,   0
-	BYTE   3, 246,  64
-	BYTE  60,  26, 144
-	BYTE  62, 169, 160
-	BYTE   6, 105,  96
-	BYTE   1, 107, 160
-	BYTE   0,  27, 192
-	BYTE   0,   5,  68
-	BYTE   0,   5,  85
-	BYTE   0,  69,  85
-	BYTE   0,  84,  69
-	BYTE   0,  20,   1
+	BYTE   3, 212,   0
+	BYTE   7, 116,   0
+	BYTE   7, 116,   0
+	BYTE  15, 240,   0
+	BYTE  13, 240,   0
+	BYTE  15, 217,   0
+	BYTE 240, 106,  64
+	BYTE 250, 166, 128
+	BYTE  25, 165, 128
+	BYTE   5, 174, 128
+	BYTE   0, 111,   0
+	BYTE   0,  21,  16
+	BYTE   0,  21,  84
+	BYTE   1,  21,  84
+	BYTE   1,  81,  20
+	BYTE   0,  80,   4
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
 ; Sprite #5
-; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
-	BYTE  85,   0,   0
-	BYTE  21,  64,   0
-	BYTE  61,  64,   0
-	BYTE 119,  64,   0
-	BYTE 119,  64,   0
-	BYTE 255,   0,   0
-	BYTE 223,   0,   0
-	BYTE 253,  64,   0
-	BYTE   6, 144,   0
-	BYTE  42, 160,   0
-	BYTE 170,  96,   0
-	BYTE 251, 224,   0
-	BYTE 123, 192,   0
-	BYTE  21,  80,   0
-	BYTE   1,  84,   0
-	BYTE   1,  84,   0
-	BYTE   0,  68,   0
-	BYTE   1,  68,   0
-	BYTE   5,  64,   0
-	BYTE   0,   0,   0
-	BYTE   0,   0,   0
-
-; Sprite #6
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
 	BYTE   5,  80,   0
 	BYTE   1,  84,   0
@@ -127,114 +103,138 @@
 	BYTE   7, 116,   0
 	BYTE  15, 240,   0
 	BYTE  13, 240,   0
-	BYTE  15, 208,   0
-	BYTE   4,  96,   0
-	BYTE  26, 169,   0
-	BYTE  42, 170,   0
-	BYTE  38, 165,   0
-	BYTE  62, 175,   0
-	BYTE  13,  95,   0
-	BYTE   5,  80,   0
-	BYTE  20,  20,   0
-	BYTE  20,  20,   0
-	BYTE  20,  20,   0
-	BYTE  84,  21,   0
+	BYTE  15, 212,   0
+	BYTE   0, 105,   0
+	BYTE   2, 170,   0
+	BYTE  10, 166,   0
+	BYTE  15, 190,   0
+	BYTE   7, 188,   0
+	BYTE   1,  85,   0
+	BYTE   0,  21,  64
+	BYTE   0,  21,  64
+	BYTE   0,   4,  64
+	BYTE   0,  20,  64
+	BYTE   0,  84,   0
+	BYTE   0,   0,   0
+	BYTE   0,   0,   0
+
+; Sprite #6
+; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
+	BYTE   1,  84,   0
+	BYTE   0,  85,   0
+	BYTE   0, 245,   0
+	BYTE   1, 221,   0
+	BYTE   1, 221,   0
+	BYTE   3, 252,   0
+	BYTE   3, 124,   0
+	BYTE   3, 244,   0
+	BYTE   1,  24,   0
+	BYTE   6, 170,  64
+	BYTE  10, 170, 128
+	BYTE   9, 169,  64
+	BYTE  15, 171, 192
+	BYTE   3,  87, 192
+	BYTE   1,  84,   0
+	BYTE   5,   5,   0
+	BYTE   5,   5,   0
+	BYTE   5,   5,   0
+	BYTE  21,   5,  64
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
 ; Sprite #7
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
+	BYTE   0,  21,  64
 	BYTE   0,  85,   0
-	BYTE   1,  84,   0
-	BYTE   1, 124,   0
-	BYTE   1, 221,   0
-	BYTE   1, 221,   0
-	BYTE   0, 255,   0
-	BYTE   0, 247,   0
-	BYTE   1, 127,   0
-	BYTE  22, 144,   0
-	BYTE  86, 168,   0
-	BYTE  85, 170,   0
-	BYTE  87, 239,   0
-	BYTE  87, 237,   0
-	BYTE  21,  84,   0
-	BYTE  61,  64,   0
-	BYTE  61,  64,   0
-	BYTE  61,   0,   0
-	BYTE  13,  64,   0
-	BYTE   1,  80,   0
+	BYTE   0,  95,   0
+	BYTE   0, 119,  64
+	BYTE   0, 119,  64
+	BYTE   0,  63, 192
+	BYTE   0,  61, 192
+	BYTE   0,  95, 192
+	BYTE   5, 164,   0
+	BYTE  21, 170,   0
+	BYTE  21, 106, 128
+	BYTE  21, 251, 192
+	BYTE  21, 251,  64
+	BYTE   5,  85,   0
+	BYTE  15,  80,   0
+	BYTE  15,  80,   0
+	BYTE  15,  64,   0
+	BYTE   3,  80,   0
+	BYTE   0,  84,   0
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
 ; Sprite #8
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
+	BYTE   0,  21,  64
 	BYTE   0,  85,   0
-	BYTE   1,  84,   0
-	BYTE   1, 124,   0
-	BYTE   1, 221,   0
-	BYTE   1, 221,   0
-	BYTE   0, 255,   0
-	BYTE   0, 247,   0
-	BYTE   1, 127,   0
-	BYTE  22, 144,   0
-	BYTE  86, 168,   0
-	BYTE  85, 170,   0
-	BYTE  87, 239,   0
-	BYTE  87, 237,   0
-	BYTE  21,  84,   0
-	BYTE  61,  64,   0
-	BYTE  61,  64,   0
-	BYTE  13,   0,   0
-	BYTE   1,  64,   0
-	BYTE   1,  80,   0
+	BYTE   0,  95,   0
+	BYTE   0, 119,  64
+	BYTE   0, 119,  64
+	BYTE   0,  63, 192
+	BYTE   0,  61, 192
+	BYTE   0,  95, 192
+	BYTE   5, 164,   0
+	BYTE  21, 170,   0
+	BYTE  21, 106, 128
+	BYTE  21, 251, 192
+	BYTE  21, 251,  64
+	BYTE   5,  85,   0
+	BYTE  15,  80,   0
+	BYTE  15,  80,   0
+	BYTE   3,  64,   0
+	BYTE   0,  80,   0
+	BYTE   0,  84,   0
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
 ; Sprite #9
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
-	BYTE  85,   0,   0
 	BYTE  21,  64,   0
-	BYTE  61,  64,   0
-	BYTE 119,  64,   0
-	BYTE 119,  64,   0
-	BYTE 255,   0,   0
-	BYTE 223,   0,   0
-	BYTE 253,  64,   0
-	BYTE   6, 148,   0
-	BYTE  42, 149,   0
-	BYTE 170,  85,   0
-	BYTE 251, 213,   0
-	BYTE 123, 213,   0
-	BYTE  21,  84,   0
-	BYTE   1, 124,   0
-	BYTE   1, 124,   0
-	BYTE   0, 124,   0
-	BYTE   1, 112,   0
-	BYTE   5,  64,   0
+	BYTE   5,  80,   0
+	BYTE  15,  80,   0
+	BYTE  29, 208,   0
+	BYTE  29, 208,   0
+	BYTE  63, 192,   0
+	BYTE  55, 192,   0
+	BYTE  63,  80,   0
+	BYTE   1, 165,   0
+	BYTE  10, 165,  64
+	BYTE  42, 149,  64
+	BYTE  62, 245,  64
+	BYTE  30, 245,  64
+	BYTE   5,  85,   0
+	BYTE   0,  95,   0
+	BYTE   0,  95,   0
+	BYTE   0,  31,   0
+	BYTE   0,  92,   0
+	BYTE   1,  80,   0
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 
 ; Sprite #10
 ; Multicolor mode, BG color: 0, Sprite color: 15, multicolor1: 11, multicolor2: 1
-	BYTE  85,   0,   0
 	BYTE  21,  64,   0
-	BYTE  61,  64,   0
-	BYTE 119,  64,   0
-	BYTE 119,  64,   0
-	BYTE 255,   0,   0
-	BYTE 223,   0,   0
-	BYTE 253,  64,   0
-	BYTE   6, 148,   0
-	BYTE  42, 149,   0
-	BYTE 170,  85,   0
-	BYTE 251, 213,   0
-	BYTE 123, 213,   0
-	BYTE  21,  84,   0
-	BYTE   1, 124,   0
-	BYTE   1, 124,   0
-	BYTE   0, 112,   0
-	BYTE   1,  64,   0
-	BYTE   5,  64,   0
+	BYTE   5,  80,   0
+	BYTE  15,  80,   0
+	BYTE  29, 208,   0
+	BYTE  29, 208,   0
+	BYTE  63, 192,   0
+	BYTE  55, 192,   0
+	BYTE  63,  80,   0
+	BYTE   1, 165,   0
+	BYTE  10, 165,  64
+	BYTE  42, 149,  64
+	BYTE  62, 245,  64
+	BYTE  30, 245,  64
+	BYTE   5,  85,   0
+	BYTE   0,  95,   0
+	BYTE   0,  95,   0
+	BYTE   0,  28,   0
+	BYTE   0,  80,   0
+	BYTE   1,  80,   0
 	BYTE   0,   0,   0
 	BYTE   0,   0,   0
 

@@ -16,67 +16,61 @@
 #include "charset.h"
 
 #define SPEED 10
+#define EMPTY 32
 
-unsigned char frame,mirror=0,move=0,collision=0,last_move=0,last_mirror=0;
-unsigned x,y;
+unsigned char frame,mirror=0,move=0,collision=0,fuel=40;
+unsigned x,y, feet, head,left,right;
+unsigned char i;
 
-
-unsigned feet()
+unsigned address()
 {
-	unsigned address = SCR_SCREEN_MEMORY;
-	char result,i;
-	address += x>>3;
-	address += 40*((3+y)>>3);
-	address += 80;
-	result = PEEK(address);
-	for(i=1; i <=2;i++)
-		if(PEEK(address+i)>result) result = PEEK(address+i);
+	return SCR_SCREEN_MEMORY + (x>>3) + (40*((3+y)>>3));
+}
+
+unsigned _feet()
+{
+	unsigned a;
+	char result;
+	a = address() + 80;
+	result = PEEK(a);
+	for(i=1; i <=2;i++) if(PEEK(a+i)>result) result = PEEK(a+i);
 	return result;
 }
 
-unsigned head()
+unsigned _head()
 {
-	unsigned address = SCR_SCREEN_MEMORY;
-	char result,i;
-	address += x>>3;
-	address += 40*((y-2)>>3);
-	address += 0;
-	result = PEEK(address);
-	for(i=1; i <=2;i++)
-		if(PEEK(address+i)>result) result = PEEK(address+i);
+	unsigned a;
+	char result;
+	a = address();
+	result = PEEK(a);
+	for(i=1; i <=2;i++)	if(PEEK(a+i)>result) result = PEEK(a+i);
 	return result;
 }
 
-unsigned right()
+unsigned _right()
 {
-	unsigned address = SCR_SCREEN_MEMORY;
-	char result,i;
-	address += x>>3;
-	address += 40*((3+y)>>3);
-	address += 2;
-	result = PEEK(address);
-	for(i=0;i<40*2;i+=40)
-		if(PEEK(address+i)>result) result = PEEK(address+i);
+	unsigned a;
+	char result;
+	a = address()+3;
+	result = PEEK(a);
+	for(i=0;i<40*2;i+=40) if(PEEK(a+i)>result) result = PEEK(a+i);
 	return result;
 }
 
-unsigned left()
+unsigned _left()
 {
-	unsigned address = SCR_SCREEN_MEMORY;
-	char result,i;
-	address += x>>3;
-	address += 40*((3+y)>>3);
-	address += 0;
-	result = PEEK(address);
-	for(i=0;i<40*2;i+=40)
-		if(PEEK(address+i)>result) result = PEEK(address+i);
+	unsigned a;
+	char result;
+	a = address()-1;
+	result = PEEK(a);
+	for(i=0;i<40*2;i+=40) if(PEEK(a+i)>result) result = PEEK(a+i);
 	return result;
 }
 
 char f()
 {
 	unsigned char f1=1,f2=1,k,f;
-	f=feet()==32?0:1;
+	f=(feet==EMPTY)?0:1;
 	k = mirror+(f<<1)+(move<<2);
 	//asm ("jsr $E566"); printf("k: %3d",k);
 	switch(k)
@@ -94,17 +88,24 @@ char f()
 	return (frame % SPEED < SPEED/2?f1:f2)-1;
 }
 
+void draw_fuel()
+{
+	for(i=0; i < fuel; i++) POKE(SCR_COLOR_MEMORY+i+1000-40, YELLOW);
+	for(i=fuel; i < 40; i++) POKE(SCR_COLOR_MEMORY+i+1000-40, RED);
+}
+
 void main(void) {
 	char joy;
 	x = 48;
-	y = 32;
+	y = EMPTY;
 
 	scr_clear();
 	
-	scr_multicolor(ON);
 	scr_background(BLACK);
 	scr_border(BLACK);
 	scr_load(level000_screen,level000_color,charset); 
+	scr_multicolor(ON, WHITE, LIGHTGREEN);
+	
 	sprite_init();
 	sprite_double_x(0,OFF);
 	sprite_double_y(0,OFF);
@@ -116,24 +117,22 @@ void main(void) {
 
 	while(1)
 	{
-		if(feet()==32) y++;
-		right();
+		feet = _feet();
+		head = _head();
+		left = _left();
+		right = _right();
+		if(feet == EMPTY) y++;
 		move = 0;
 		joy = joystick();
 		//if(!(joy & _JOY_DOWN)) { y++; move=1; }
-		if(!(joy & _JOY_RIGHT) && right()==32) { x+=2; mirror = 0; move=1;};
-		if(!(joy & _JOY_UP) && head()==32) { y-=2; move=1;}
-		if(!(joy & _JOY_LEFT) && left()==32) { x-=2; mirror = 1; move=1;};
+		if(!(joy & _JOY_RIGHT) && right==EMPTY) { x+=2; mirror = 0; move=1;};
+		if(!(joy & _JOY_FIRE) && head==EMPTY && fuel > 0) { y-=2; move=1; if(frame == SPEED) { fuel--; draw_fuel(); } }
+		if(!(joy & _JOY_LEFT) && left==EMPTY) { x-=2; mirror = 1; move=1;};
 		
 		sprite_setX(0,x);
-		sprite_setY(0,y);
-		
+		sprite_setY(0,y);		
 		sprite_define(0, sprite0, f());	
-		if(last_mirror != mirror || last_move != move)
-		{
-			last_mirror = mirror;
-			last_move = move;
-		}
+
 		frame++;
 		waitvsync();		
 	}	
